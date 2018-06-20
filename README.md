@@ -515,5 +515,5 @@ Elasticsearch 				| Apache License 2.0
 
 ## To-Do:
 
-Add ElasticBean
-Make DynamoDB persist data
+* Add ElasticBean
+* Make DynamoDB persist data
