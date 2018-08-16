@@ -5,15 +5,17 @@ services:
     image: localstack/localstack
     ports:
       - "4567-4583:4567-4583"
-      - "${PORT_WEB_UI-8080}:${PORT_WEB_UI-8080}"
+      - "${PORT_WEB_UI-8090}:${PORT_WEB_UI-8090}"
     environment:
       - SERVICES=${SERVICES- }
       - DEBUG=${DEBUG- }
-      - DATA_DIR=${DATA_DIR- }
-      - PORT_WEB_UI=${PORT_WEB_UI- }
+      - PORT_WEB_UI=8090
       - LAMBDA_EXECUTOR=${LAMBDA_EXECUTOR- }
       - KINESIS_ERROR_PROBABILITY=${KINESIS_ERROR_PROBABILITY- }
+      - DATA_DIR=/tmp/localstack/data
       - DOCKER_HOST=unix:///var/run/docker.sock
-    volumes:
-      - "${TMPDIR:-/tmp/localstack}:/tmp/localstack"
-      - "/var/run/docker.sock:/var/run/docker.sock"
+    networks:
+      - my-network-name
+networks:
+  my-network-name:
+    driver: bridge
